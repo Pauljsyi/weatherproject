@@ -1,9 +1,20 @@
 const express = require("express");
+const https = require('https');
+
 const app = express();
 
 
+
+
 app.get("/", function(req, res){
-    res.send("server is up and running!")
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=Los%20Angeles&appid=a732389836363d79d1649abdaca4fdbb&units=imperial#';
+    
+    //https get request over the internet to the url
+    https.get(url , function(response){
+        //logging the response from the api get request
+        console.log(response)
+    });
+res.send("server is up and running!")
 })
 
 app.listen(3000, function(){
